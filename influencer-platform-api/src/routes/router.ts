@@ -16,6 +16,7 @@ import {
   GOOGLE_CLIENT_ID,
   GOOGLE_SECRET,
   YOUTUBE_API_KEY,
+  YOUTUBE_OAUTH_TOKEN,
 } from '@utils/secrets';
 import User from '@models/user';
 import { google } from 'googleapis';
@@ -38,7 +39,7 @@ router.use(
   '/influencers',
   authMiddleware,
   // roleMiddleware('business'),
-  influencersRouter
+  influencersRouter,
 );
 router.use('/content', authMiddleware, contentRouter);
 router.use('/campaign-content', campaignContentRouter);
@@ -62,10 +63,9 @@ router.get('/youtube/channel', async (req, res) => {
       `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&mine=true&key=${YOUTUBE_API_KEY}`,
       {
         headers: {
-          Authorization:
-            'Bearer ya29.a0AXeO80Q_rguFbAvcG1qaUVgYOGqNFX-nBcSt3ipQNi_JSl7f0PsIDyG5lxuhplzkyn9jMjQaelYbCIL8M11tHNVeukb2zdckKOnTEMbuQ2JiFuv8xfl7y-9qJGxqyUnU-WVAN7D0ELGKXpD5TOoF5Aa53koT6PPm7K0rZDHrTAaCgYKAdoSARESFQHGX2Mi1iTbg9D1d7JlLSUh4mmQzg0177',
+          Authorization: `Bearer ${YOUTUBE_OAUTH_TOKEN}`,
         },
-      }
+      },
     );
 
     res.json(response.data);

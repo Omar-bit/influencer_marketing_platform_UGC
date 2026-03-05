@@ -21,6 +21,7 @@ export const BASE_URL =
   process.env.BASE_URL || 'http://localhost' + ':' + (PORT || 5000);
 
 export const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY || '';
+export const YOUTUBE_OAUTH_TOKEN = process.env.YOUTUBE_OAUTH_TOKEN || '';
 
 export const FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID || '';
 export const FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET || '';
