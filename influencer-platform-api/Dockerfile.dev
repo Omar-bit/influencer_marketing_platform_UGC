@@ -1,0 +1,17 @@
+# Use Node.js image with Python and build tools already installed
+FROM node:20
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 5000
+
+# Create folders for persistence 
+RUN mkdir -p /app/uploads /app/logs
+
+CMD ["npm", "run", "dev"]

@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  # MongoDB service
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_dev
+    restart: always
+    volumes:
+      - mongodb_data_dev:/data/db
+    ports:
+      - '27017:27017'
+    networks:
+      - influencer_platform_network_dev
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Redis service for caching
+  redis:
+    image: redis:alpine
+    container_name: redis_dev
+    restart: always
+    ports:
+      - '6379:6379'
+    networks:
+      - influencer_platform_network_dev
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Backend API service in development mode
+  api:
+    build:
+      context: ./influencer-platform-api
+      dockerfile: Dockerfile.dev
+    container_name: influencer_api_dev
+    restart: always
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - '5000:5000'
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/influencer-platform
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - FRONTEND_URL=http://localhost:3000
+      - BASE_URL=http://localhost:5000
+      # Add other environment variables as needed
+    volumes:
+      - ./influencer-platform-api:/app
+      - /app/node_modules
+      - uploads_data_dev:/app/uploads
+      - logs_data_dev:/app/logs
+    networks:
+      - influencer_platform_network_dev
+    command: npm run dev
+  # Frontend Next.js service in development mode
+  frontend:
+    build:
+      context: ./influencer-platform
+      dockerfile: Dockerfile.dev
+    container_name: influencer_frontend_dev
+    restart: always
+    depends_on:
+      - api
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
+      # For internal communication within Docker network
+      - NEXT_PRIVATE_BACKEND_URL=http://api:5000
+    volumes:
+      - ./influencer-platform:/app
+      - /app/node_modules
+      - ./influencer-platform/certificates:/app/certificates
+    networks:
+      - influencer_platform_network_dev
+    command: npm run dev
+
+# Define volumes for development
+volumes:
+  mongodb_data_dev:
+  uploads_data_dev:
+  logs_data_dev:
+
+# Define networks for development
+networks:
+  influencer_platform_network_dev:
+    driver: bridge

@@ -1,0 +1,15 @@
+const root = '/auth';
+export const LOGIN = `${root}/login`;
+export const SIGNUP = `${root}/register`;
+export const VERIFY_PROVIDERS_SESSION = `${root}/providers`;
+export const LOGIN_PROVIDERS = `${root}/login/providers`;
+export const REFRESH_TOKEN = `${root}/refresh`;
+export const GOOGLE_LOGIN = `${root}/google`;
+export const FACEBOOK_LOGIN = `${root}/facebook`;
+export const RESET_PASS_REQUEST = `${root}/password-reset-request`;
+export const VERIFY_OTP = `${root}/verify-otp`;
+export const VERIFY_EMAIL = `${root}/verify-email`;
+export const RESEND_OTP = `${root}/resend-otp`;
+export const RESEND_ACTIVATION_OTP = `${root}/resend-activation-otp`;
+export const RESET_PASS = `${root}/password-reset`;
+export const LOGOUT = `${root}/logout`;

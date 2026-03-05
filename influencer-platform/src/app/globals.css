@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --text: #1e1e1e;
+  --font-inter: 'Inter', sans-serif;
+
+  --influencer-primary: #da0d8c;
+  --influencer-secondary: #f3c028;
+  --influencer-aux: #f15f4d;
+
+  --brand-primary: #6c51a2;
+  --brand-primary_10: #6c51a241;
+  --brand-secondary: #8f7ab8;
+
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --header-bg: #ffffff;
+  --sidebar-bg: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-hover: #f3f4f6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --button-hover: rgba(0, 0, 0, 0.05);
+  --badge-bg: #f9fafb;
+  --hover-bg: #f3f4f6;
+}
+
+[data-theme='dark'] {
+  /* 121212 */
+  --background: #111827;
+  --foreground: #e5e5e5;
+
+  --text: #f3f4f6;
+  --card-bg: #1e1e1e;
+  --card-border: #2e2e2e;
+  --input-bg: #2e2e2e;
+  --input-border: #3e3e3e;
+  --header-bg: #1e1e1e;
+  --sidebar-bg: #1a1a1a;
+  --dropdown-bg: #1e1e1e;
+  --dropdown-hover: #2e2e2e;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --button-hover: rgba(255, 255, 255, 0.05);
+  --badge-bg: #2e2e2e;
+}
+
+.dark {
+  /* 121212 */
+
+  --background: #111827;
+  --foreground: #f3f4f6;
+
+  --text: #e5e7eb;
+
+  --influencer-primary: #ff45b8;
+  --influencer-secondary: #ffd644;
+  --influencer-aux: #ff7a6a;
+
+  --brand-primary: #8e6dcf;
+  --brand-primary_10: #8e6dcf41;
+  --brand-secondary: #a996d8;
+
+  --card-bg: #1e1e1e;
+  --card-border: #333333;
+  --input-bg: #2a2a2a;
+  --input-border: #444444;
+  --hover-bg: #2a2a2a;
+}
+
+* {
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.scroll-bar-fix {
+  /* scrollbar-gutter: stable; */
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6c51a2 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 2px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #6c51a2;
+  border-radius: 4px;
+  border: 1px solid #ffffff;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  font-family: var(--font-inter);
+  color: var(--foreground);
+  min-height: 100vh;
+  position: relative;
+}
+
+.flipx {
+  transform: scaleX(-1);
+}
+.influencer-primary-gradient {
+  background: linear-gradient(to left, #f3c028, #f15f4d, #da0d8c);
+}
+.brand-dark-gradient {
+  background: linear-gradient(
+    to right,
+    #252129,
+    #2c233a,
+    #33294b,
+    #3e3257
+  ) !important;
+}
+.influencer-primary-gradient-opacity {
+  background: linear-gradient(to left, #f3c02839, #f1604d3f, #da0d8b2f);
+}
+.influencer-primary-gradient-text {
+  background: linear-gradient(to left, #f3c028, #f15f4d, #da0d8c) no-repeat
+    fixed;
+
+  background-position: start center;
+  background-size: 80%;
+  background-clip: text;
+  /* width: 100% !important; */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.influencer-primary-gradient-border {
+  border: 1px solid transparent;
+  border-image: linear-gradient(to left, #f3c028, #f15f4d, #da0d8c) 1;
+  border-image-slice: 1;
+}
+
+.influencer-landing-gradient {
+  background: url(../../public/assets/landing/bg.png) no-repeat fixed;
+  background-size: 100% 100%;
+}
+
+.timeline-gradient {
+  background: linear-gradient(to bottom, #f3c028, #f15f4d, #da0d8c, black);
+}
+
+.brand-gradient {
+  background: linear-gradient(
+    to right,
+    #ffedf7,
+    #f4eeff,
+    #fbfafd,
+    var(--brand-primary)
+  );
+}
+.instagram-background {
+  background: linear-gradient(
+    to right,
+    #f3c028,
+    #f15f4d,
+    #da0d8c,
+    var(--brand-primary)
+  );
+}
+/* *::-webkit-scrollbar {
+  display: none;
+} */
+
+.combination-gradient {
+  background: linear-gradient(
+    to right,
+    var(--brand-primary),
+    var(--influencer-primary)
+  );
+}
+.most-popular::before {
+  content: 'Most Popular';
+  font-size: 12px;
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  background: var(--influencer-primary);
+  top: 0;
+  left: 0;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+}

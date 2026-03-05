@@ -1,0 +1,10 @@
+.env
+node_modules
+*/dist
+/dist/**
+todo.txt
+/uploads
+/logs
+/dist
+**.log
+ai_fake_follower/influencers_updated.csv
