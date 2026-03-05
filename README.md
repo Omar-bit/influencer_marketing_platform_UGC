@@ -1,5 +1,5 @@
 # Influencer Platform Docker Setup
-
+### Notice if you want to use the ai fake follower detector feature you need to setup this project https://github.com/Omar-bit/ai_fake_follower_detector and https://github.com/Omar-bit/ai_reels_generator for generating reels using ai
 This document provides instructions on how to use Docker to run the Influencer Platform application in both development and production environments.
 
 ## Prerequisites
